@@ -1,8 +1,6 @@
 package FileLogic
 
-import Task.Task
 import Task.TaskLogic
-import java.io.BufferedWriter
 import java.io.File
 
 class FileLogic (taskLogic: TaskLogic) {
@@ -17,7 +15,7 @@ class FileLogic (taskLogic: TaskLogic) {
     fun writeToFile() {
 
         File("text.txt").bufferedWriter().use { out ->
-            this.tasks.forEach { element -> out.write("${element}\n") }
+            this.tasks.forEach{ element -> out.write("${element}\n") }
         }
     }
 
@@ -28,5 +26,11 @@ class FileLogic (taskLogic: TaskLogic) {
     fun readFromFile(){
 
         File("text.txt").forEachLine {element -> this.tasks.add(element) }
+    }
+
+    fun createEmptyFile(){
+        val fileName:String = "text.txt"
+        var emptyFile = File(fileName)
+        emptyFile.writeBytes(ByteArray(0))
     }
 }

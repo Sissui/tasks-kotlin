@@ -10,7 +10,7 @@ class TaskLogic {
     }
     fun addTask(){
         var newTask = Task(readLine()!!)
-        this.tasks.add(newTask.getName())
+        this.tasks.add(newTask.getContent())
     }
 
     fun showTasks(){
@@ -20,11 +20,7 @@ class TaskLogic {
         }
         println("1. Add Task, 2. Remove Task, 3. Clear Tasks  4. Exit")
     }
-//    fun deleteTask(i: Int){
-//       this.tasks.forEachIndexed{index, element ->
-//           if(index == i){
-//               element.remove
-//           }
-//       }
-//    }
+    fun deleteTask(i: Int){
+       tasks.removeAt(i-1)
+    }
 }

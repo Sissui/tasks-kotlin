@@ -1,9 +1,12 @@
 import FileLogic.FileLogic
 import Task.TaskLogic
+import java.io.File
+import java.io.FileNotFoundException
 
 fun main(args: Array<String>){
 
 //  MENU
+    try{
     var tl = TaskLogic()
     var fl = FileLogic(tl)
     fl.readFromFile()
@@ -19,9 +22,10 @@ fun main(args: Array<String>){
                     fl.writeToFile()
             }
 
-            2 -> {println("Deleting isn't working yet")
-//                    var index: Int = readLine()!!.toInt();
-//                    tl.deleteTask(index)}
+            2 -> {println("Type number of Task <only one> that you have done or you want to remove!")
+                    var index: Int = readLine()!!.toInt();
+                    tl.deleteTask(index)
+                    fl.writeToFile()
             }
 
             3 -> {fl.clearTasks()
@@ -34,5 +38,12 @@ fun main(args: Array<String>){
             }
             else -> println("Choose correct option. Try Again!")
         }
+    }
+    }catch (e: FileNotFoundException){
+        // w File logic utworzyc pusty kontruktor dla tego przypadku
+        val tl = TaskLogic()
+        val fl = FileLogic(tl)
+        print("File 'file.txt' was missing so we created one for you. Don't bother and rerun your app.")
+        fl.createEmptyFile()
     }
 }

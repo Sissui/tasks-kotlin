@@ -1,13 +1,13 @@
 package Task
 
-class Task  (_name: String){
-    private var name: String = ""
+class Task  (_content: String){
+    private var content: String = ""
 
     init {
-        this.name = _name
+        this.content = _content
     }
 
-    fun getName(): String{
-        return this.name
+    fun getContent(): String{
+        return this.content
     }
 }
