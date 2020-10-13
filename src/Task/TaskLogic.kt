@@ -3,28 +3,28 @@ package Task
 import java.util.*
 
 class TaskLogic {
-    private var tasks = mutableListOf<Task>()
+    private var tasks = mutableListOf<String>()
 
-    fun getTasks(): List<Task>{
-        print(tasks)
+    fun getTasks(): MutableList<String>{
         return this.tasks
     }
     fun addTask(){
         var newTask = Task(readLine()!!)
-        this.tasks.add(newTask)
+        this.tasks.add(newTask.getName())
     }
 
     fun showTasks(){
-//        println(tasks)
-        this.tasks.forEachIndexed { index, element ->
-            println("${index+1}: ${element.getName()}.")
+        var i: Int = 0
+        this.tasks.forEach {element -> println("${++i}: ${element}")
+
         }
+        println("1. Add Task, 2. Remove Task, 3. Clear Tasks  4. Exit")
     }
-    fun deleteTask(index: Int){
-//        for (i in tasks.indices) {
-//            if(i == index){
-//                tasks.
-//            }
-//        }
-    }
+//    fun deleteTask(i: Int){
+//       this.tasks.forEachIndexed{index, element ->
+//           if(index == i){
+//               element.remove
+//           }
+//       }
+//    }
 }

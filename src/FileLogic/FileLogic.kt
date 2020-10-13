@@ -2,19 +2,31 @@ package FileLogic
 
 import Task.Task
 import Task.TaskLogic
+import java.io.BufferedWriter
 import java.io.File
 
-class FileLogic (taskLogic: TaskLogic){
+class FileLogic (taskLogic: TaskLogic) {
     var tl: TaskLogic
 
     init {
         this.tl = taskLogic
     }
 
-    private var tasks: List<Task> = this.tl.getTasks()
+    private var tasks: MutableList<String> = this.tl.getTasks()
 
-    fun writeToFile(){
-        println(this.tasks)
-        this.tasks.forEach{element -> File("text.txt").bufferedWriter().use { out -> out.write(element.getName()) }}
+    fun writeToFile() {
+
+        File("text.txt").bufferedWriter().use { out ->
+            this.tasks.forEach { element -> out.write("${element}\n") }
+        }
+    }
+
+    fun clearTasks(){
+        File("text.txt").forEachLine {element -> this.tasks.remove(element) }
+    }
+
+    fun readFromFile(){
+
+        File("text.txt").forEachLine {element -> this.tasks.add(element) }
     }
 }
